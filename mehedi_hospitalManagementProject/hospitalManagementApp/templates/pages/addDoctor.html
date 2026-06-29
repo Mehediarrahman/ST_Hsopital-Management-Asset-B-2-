@@ -47,8 +47,8 @@
         <td>{{d.email}}</td>
         <td>{{d.dept}}</td>
         <td>
-            <a href="" class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-danger">Delete</a>
+            <a href="{% url 'editDoctor' d.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'deleteDoctor' d.id %}" class="btn btn-danger">Delete</a>
         </td>
     </tr>
         
