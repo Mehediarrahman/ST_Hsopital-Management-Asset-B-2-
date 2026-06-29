@@ -118,6 +118,40 @@ def addDoctorPage(request):
     return render(request, 'pages/addDoctor.html', context)
 
 
+def editDoctorPage(request, id):
+
+    if request.method =="POST":
+        name = request.POST.get('doctor_name')
+        specialization = request.POST.get('specialization')
+        doctor_email = request.POST.get('doctor_email')
+        dept_id = request.POST.get('dept_id')
+
+        dept_obj = DepartmentModel.objects.get(id=dept_id)
+
+        DoctorModel(
+            id=id,
+            name = name,
+            specialization = specialization,
+            email = doctor_email,
+            dept = dept_obj
+
+        ).save()
+        messages.success(request, 'Doctor Edited') 
+        return redirect('addDoctor')  
+
+    doctor_data = DoctorModel.objects.get(id=id)
+    dept_data = DepartmentModel.objects.all()
+    context = {
+        'doctor_data':doctor_data,
+        'dept_data': dept_data
+    }
+    return render(request,'pages/editDoctor.html',context)
+
+def deleteDoctorPage(request, id):
+    DoctorModel.objects.get(id=id).delete()
+    return redirect('addDoctor')
+
+
 def addpatientPage(request):
     if request.method == "POST":
         name = request.POST.get('patient_name')
