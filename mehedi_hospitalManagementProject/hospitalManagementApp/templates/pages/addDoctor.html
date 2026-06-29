@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<h1>Add Doctor</h1>
+<form action="" method="post">
+    {% csrf_token %} 
+
+    <label for="">Doctor Name</label><br>
+    <input type="text" name="doctor_name" class="form-control"><br>
+    <label for="">Specialization</label><br>
+    <input type="text" name="specialization" class="form-control"><br>
+    <label for="">Doctor Email</label><br>
+    <input type="email" name="doctor_email" class="form-control"><br>
+    <label for="" >Department</label><br>
+    <select class="form-control" name="dept_id" id="">
+        
+        {% for d in dept_data %}
+        <option value="{{d.id}}">{{d.name}}</option>
+         {% endfor %}
+         
+    </select><br>
+
+    <input type="submit" value="Add Doctor" class="btn btn-primary">
+
+</form>
+
+<hr>
+
+<table class="table ">
+    <tr>
+        <th>Sl</th>
+        <th>Doctor Name</th>
+        <th>Doctor Specialization</th>
+        <th>Doctor Email</th>
+        <th>Doctor Deparment</th>
+        <th>Action</th>
+    </tr>
+
+    
+    {% for d in doctor_data %}
+
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.specialization}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.dept}}</td>
+        <td>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+        
+    {% endfor %}
+        
+
+</table>
+    
+{% endblock body %}
+
+
+
+    

@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<h1>Edit Department</h1>
+<form action="" method="post">
+    {% csrf_token %} 
+
+    <label for="">Department Name</label><br>
+    <input value="{{data.name}}" type="text" name="dept_name" class="form-control"><br>
+
+    <input type="submit" value="Edit Department" class="btn btn-primary">
+
+</form>
+
+        
+
+{% endblock body %}
+
+
+
+    

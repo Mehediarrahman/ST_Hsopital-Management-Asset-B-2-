@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<h1>Add Patient</h1>
+<form action="" method="post">
+    {% csrf_token %} 
+
+    <label for="">Patient Name</label><br>
+    <input type="text" name="patient_name" class="form-control"><br>
+    <label for="">Age</label><br>
+    <input type="text" name="age" class="form-control"><br>
+    <label for="">Disease</label><br>
+    <input type="text" name="disease" class="form-control"><br>
+    <label for="" >Admitted_date</label><br>
+    <input type="date" class="form-control " name="admit_date"><br>
+    <label for="">Doctor</label>
+    <select class="form-control" name="doctor_id" id="">
+        
+        {% for d in doctor_data %}
+        <option value="{{d.id}}">{{d.name}}</option>
+         {% endfor %}
+         
+    </select><br>
+
+    <input type="submit" value="Add Patient" class="btn btn-primary">
+
+</form>
+
+<hr>
+
+<table class="table ">
+    <tr>
+        <th>Sl</th>
+        <th>Patient Name</th>
+        <th>Patient Age</th>
+        <th>Patient Disease</th>
+        <th>Patient Admitted date</th>
+        <th>Under(Dr.)</th>
+        <th>Action</th>
+    </tr>
+
+    
+    {% for p in patient_data %}
+
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.age}}</td>
+        <td>{{p.disease}}</td>
+        <td>{{p.admitted_date}}</td>
+        <td>{{p.doctor.name}}</td>
+        <td>
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+        
+    {% endfor %}
+        
+
+</table>
+    
+{% endblock body %}
+
+
+
+    
